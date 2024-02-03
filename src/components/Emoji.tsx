@@ -1,4 +1,3 @@
-import React from 'react'
 import bullseye from '../assets/bulls-eye.webp'
 import thumbsup from '../assets/thumbs-up.webp'
 import meh from '../assets/meh.webp'
