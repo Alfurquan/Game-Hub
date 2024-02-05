@@ -1,12 +1,12 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { BsChevronDown } from 'react-icons/bs'
+import useGameQueryStore from '../store'
 
-interface Props{
-    onSelectSortOrder: (sort: string) => void;
-    sortOrder: string;
-}
 
-const SortSelector = ({onSelectSortOrder, sortOrder} : Props) => {
+const SortSelector = () => {
+
+  const sortOrder = useGameQueryStore(s => s.gameQuery.sortOrder)
+  const setSortOrder = useGameQueryStore(s => s.setSortOrder)
 
   const sortOrders = [
     { value: '', label: 'Relevance' },
@@ -25,7 +25,7 @@ const SortSelector = ({onSelectSortOrder, sortOrder} : Props) => {
         Order by: { currentSortOrder?.label || 'Relevance' }
         </MenuButton>
         <MenuList>
-            {sortOrders.map(order => <MenuItem onClick={() => onSelectSortOrder(order.value)} key={order.label} value={order.value}>{order.label}</MenuItem>)}
+            {sortOrders.map(order => <MenuItem onClick={() => setSortOrder(order.value)} key={order.label} value={order.value}>{order.label}</MenuItem>)}
         </MenuList>
     </Menu>
   )
