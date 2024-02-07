@@ -1,6 +1,4 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { AppSettings } from "../env/AppSettings";
-
 
 export interface FetchResponse<T> {
     count: number;
@@ -8,10 +6,15 @@ export interface FetchResponse<T> {
     next?: string | null;
 }
 
+const API_KEY = process.env.API_KEY;
+
+if(!API_KEY)
+    throw new Error("API_KEY is not set");
+
 const axiosInstance = axios.create({
     baseURL: "https://api.rawg.io/api",
     params:{
-        key: AppSettings.API_KEY
+        key: API_KEY
     }
 })
 
